@@ -1,0 +1,7 @@
+name: Products
+description: a task for interview
+type: module
+core_version_requirement: ^8.8 || 9
+package: custom
+dependencies:
+  - block

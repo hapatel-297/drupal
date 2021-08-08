@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - products
+  theme:
+    - bartik
+id: productlinkblock
+theme: bartik
+region: sidebar_second
+weight: 0
+provider: null
+plugin: product_link_block
+settings:
+  id: product_link_block
+  label: 'Product Link Block'
+  provider: products
+  label_display: '0'
+  product_link_block_settings: null
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      product: product
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
