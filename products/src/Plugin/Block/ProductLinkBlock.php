@@ -57,7 +57,7 @@ class ProductLinkBlock extends BlockBase {
 	return [
 	  '#markup' => $this->t($image_markup),
 	  '#cache' => [
-			'max-age' => 0;
+			'max-age' => 0,
 	  ],
 	];
   }
