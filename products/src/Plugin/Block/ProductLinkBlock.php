@@ -53,8 +53,12 @@ class ProductLinkBlock extends BlockBase {
 			;
 		$image_markup = '<img src="data:'.$qrCode->getContentType().';base64,'.$qrCode->generate().'" />';
 	}
+	/* Removing caching for the block to get the appropriate data for each product */
 	return [
 	  '#markup' => $this->t($image_markup),
+	  '#cache' => [
+			'max-age' => 0;
+	  ],
 	];
   }
   /**
