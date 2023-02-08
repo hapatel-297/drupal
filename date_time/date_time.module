@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function date_time_theme($existing, $type, $theme, $path) {
+  return [
+    'time_block' => [
+      'variables' => [
+        'city' => NULL,
+        'country' => NULL,
+        'time' => NULL,
+      ],
+    ],
+    '#cache' => [
+        '#max-age' => 0,
+    ]
+  ];
+}

@@ -1,0 +1,5 @@
+services:
+  date_time.time_by_location:
+    class: Drupal\date_time\Service\DateTimeService
+    arguments:
+      - '@config.factory'

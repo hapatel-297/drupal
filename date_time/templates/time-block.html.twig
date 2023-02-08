@@ -1,0 +1,6 @@
+<div{{ attributes }}>
+  <!-- body -->
+  <div>{{ time |replace({'-': ''})|date('U')|format_date('custom', 'h:i A') }}</div>
+  <div>{{ time |replace({'-': ''})|date('U')|format_date('custom', 'l, d F Y')}}</div>
+  <div>Time in {{ city }},{{ country }}</div>
+</div>
