@@ -7,6 +7,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\date_time\Service\DateTimeService;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Render\RendererInterface;
 
 /**
  * Provides a 'Date Time' block.
@@ -29,16 +30,23 @@ class TimeBlock extends BlockBase implements ContainerFactoryPluginInterface {
   protected $configfactory;
 
   /**
+   * @var \Drupal\Core\Render\RendererInterface $renderer
+   */
+  protected $renderer;
+
+  /**
    * @param array $configuration
    * @param string $plugin_id
    * @param mixed $plugin_definition
    * @param \Drupal\date_time\Service\DateTimeService $dateTimeService
    * @param \Drupal\Core\Config\ConfigFactoryInterface $configfactory
+   * @param \Drupal\Core\Render\RendererInterface $renderer.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, DateTimeService $dateTimeService, ConfigFactoryInterface $configfactory) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, DateTimeService $dateTimeService, ConfigFactoryInterface $configfactory, RendererInterface $renderer) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->dateTimeService = $dateTimeService;
     $this->config = $configfactory->get('date_time.settings');
+    $this->renderer = $renderer;
   }
 
   /**
@@ -50,7 +58,8 @@ class TimeBlock extends BlockBase implements ContainerFactoryPluginInterface {
       $plugin_id,
       $plugin_definition,
       $container->get('date_time.time_by_location'),
-      $container->get('config.factory')
+      $container->get('config.factory'),
+      $container->get('renderer')
     );
   }
   
@@ -70,12 +79,7 @@ class TimeBlock extends BlockBase implements ContainerFactoryPluginInterface {
         '#time' => $time,
     ];
 
-    /*return [
-        '#markup' => "Time block",
-    ];*/
-
-    $renderer = \Drupal::service('renderer');
-    $renderer->addCacheableDependency($build, $config);
+    $this->renderer->addCacheableDependency($build, $config);
 
     return $build;
   }

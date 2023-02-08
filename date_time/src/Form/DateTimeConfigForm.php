@@ -6,7 +6,6 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Site\Settings;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
  * Configure Date, Time and Location Settings.
@@ -19,13 +18,6 @@ class DateTimeConfigForm extends ConfigFormBase {
    * @var string
    */
   const SETTINGS = 'date_time.settings';
-
-  /**
-   * The entity type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   */
-  protected $entityTypeManager;
 
   /**
    * {@inheritdoc}
@@ -48,18 +40,7 @@ class DateTimeConfigForm extends ConfigFormBase {
    */
   public static function create(ContainerInterface $container) {
     $static = new static($container->get('config.factory'));
-    $static->setEntityTypeManager($container->get('entity_type.manager'));
     return $static;
-  }
-
-  /**
-   * Set the entity type manager.
-   *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
-   *   Entity Type Manager.
-   */
-  protected function setEntityTypeManager(EntityTypeManagerInterface $entityTypeManager) {
-    $this->entityTypeManager = $entityTypeManager;
   }
 
   /**
