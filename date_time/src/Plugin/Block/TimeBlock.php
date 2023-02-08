@@ -18,29 +18,37 @@ use Drupal\Core\Render\RendererInterface;
  * )
  */
 class TimeBlock extends BlockBase implements ContainerFactoryPluginInterface {
-  
+
   /**
-   * @var \Drupal\date_time\Service\DateTimeService $dateTimeService
+   * Service object.
+   *
+   * @var \Drupal\date_time\Service\DateTimeService
    */
   protected $dateTimeService;
 
   /**
-   * @var \Drupal\Core\Config\ConfigFactoryInterface $configfactory
+   * Config factory object.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configfactory;
 
   /**
-   * @var \Drupal\Core\Render\RendererInterface $renderer
+   * Renderer object.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
    */
   protected $renderer;
 
   /**
-   * @param array $configuration
-   * @param string $plugin_id
-   * @param mixed $plugin_definition
-   * @param \Drupal\date_time\Service\DateTimeService $dateTimeService
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $configfactory
-   * @param \Drupal\Core\Render\RendererInterface $renderer.
+   * Constructs a date time block.
+   *
+   * Array $configuration
+   * String $plugin_id
+   * Mixed $plugin_definition
+   * \Drupal\date_time\Service\DateTimeService $dateTimeService
+   * \Drupal\Core\Config\ConfigFactoryInterface $configfactory
+   * \Drupal\Core\Render\RendererInterface $renderer.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, DateTimeService $dateTimeService, ConfigFactoryInterface $configfactory, RendererInterface $renderer) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -62,7 +70,7 @@ class TimeBlock extends BlockBase implements ContainerFactoryPluginInterface {
       $container->get('renderer')
     );
   }
-  
+
   /**
    * {@inheritdoc}
    */
@@ -73,10 +81,10 @@ class TimeBlock extends BlockBase implements ContainerFactoryPluginInterface {
     $time = $this->dateTimeService->getTimeByTimeZone();
 
     $build = [
-        '#theme' => 'time_block',
-        '#city' => $city,
-        '#country' => $country,
-        '#time' => $time,
+      '#theme' => 'time_block',
+      '#city' => $city,
+      '#country' => $country,
+      '#time' => $time,
     ];
 
     $this->renderer->addCacheableDependency($build, $config);

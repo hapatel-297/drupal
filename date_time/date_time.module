@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Date Time module theme mapping.
+ */
+
+/**
  * Implements hook_theme().
  */
 function date_time_theme($existing, $type, $theme, $path) {
@@ -13,7 +18,7 @@ function date_time_theme($existing, $type, $theme, $path) {
       ],
     ],
     '#cache' => [
-        '#max-age' => 0,
-    ]
+      '#max-age' => 0,
+    ],
   ];
 }

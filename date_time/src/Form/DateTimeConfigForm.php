@@ -92,10 +92,10 @@ class DateTimeConfigForm extends ConfigFormBase {
     $form_data = $form_state->getValues();
 
     $this->config(static::SETTINGS)
-        ->set('country', $form_data['country'])
-        ->set('city', $form_data['city'])
-        ->set('timezone', $form_data['timezone'])
-        ->save();
+      ->set('country', $form_data['country'])
+      ->set('city', $form_data['city'])
+      ->set('timezone', $form_data['timezone'])
+      ->save();
 
     parent::submitForm($form, $form_state);
   }
