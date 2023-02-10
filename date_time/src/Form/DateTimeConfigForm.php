@@ -54,6 +54,7 @@ class DateTimeConfigForm extends ConfigFormBase {
       '#title' => $this->t('Country'),
       '#description' => $this->t("Country name"),
       '#default_value' => $config->get('country'),
+      '#required' => TRUE,
     ];
 
     $form['city'] = [
@@ -61,6 +62,7 @@ class DateTimeConfigForm extends ConfigFormBase {
       '#title' => $this->t('City'),
       '#description' => $this->t("City name"),
       '#default_value' => $config->get('city'),
+      '#required' => TRUE,
     ];
 
     $form['timezone'] = [
